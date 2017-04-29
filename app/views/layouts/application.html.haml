@@ -7,8 +7,10 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    .container
-      .user_nav
+    %div{ :class => "alert alert-success text-center" }
+      .container
+        %strong
+          -# Landslide
         - if user_signed_in?
           Logged in as
           .strong= current_user.email
@@ -24,3 +26,16 @@
         - flash.each do |name, msg|
           = content_tag :div, msg, id: "flash_#{name}"
         = yield
+    .parallax-image
+      = image_tag "landslide_1.jpg", size: "1500x550"
+    %div{ :class => "alert alert-success text-center" }
+      .container
+        .social-area.text-center
+          %h5 Join us on
+          %a.btn.btn-social.btn-round{:href => "https://www.facebook.com/pasatrade"}
+            %i.fa.fa-facebook
+          %a.btn.btn-social.btn-round{:href => "https://www.twitter.com/pasatrade"}
+            %i.fa.fa-twitter
+          %a.btn.btn-social.btn-round{:href => "https://www.instagram.com/pasa.trade"}
+            %i.fa.fa-instagram
+
