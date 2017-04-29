@@ -19,7 +19,7 @@
           .pull-right
             = link_to "Sign up", new_user_registration_path
             = link_to "Login", new_user_session_path
-            / = link_to "Sign in with facebook", user_omniauth_authorize_path(:facebook)
+            = link_to "Sign in with facebook", user_facebook_omniauth_authorize_path
 
         - flash.each do |name, msg|
           = content_tag :div, msg, id: "flash_#{name}"
