@@ -16,7 +16,7 @@
     = f.text_field :longitude, class: 'form-control'
   .form-group
     = f.label "Location Accuracy"
-    = f.select :location_accuracy, ['Hightly accurate', 'Not so accurate'], class: 'form-control'
+    = f.select :location_accuracy, ['Known within 1km', 'Known within 2km', 'Known greater than 2km'], class: 'form-control'
 
   .form-group
     = f.label "Description of location:"
@@ -27,5 +27,9 @@
   .form-group
     = f.label "Trigger:"
     = f.text_field :trigger, class: 'form-control'
+  .form-group
+    = f.label "Landslide Occured at:"
+    = f.datetime_field :tstamp
+
   .form-group
     = f.submit "Submit", class: 'btn btn-primary'
