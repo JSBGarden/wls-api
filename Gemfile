@@ -32,7 +32,19 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'rabl'
 gem 'kaminari'
+gem 'bootstrap-sass'
+gem 'haml'
+gem 'devise'
+gem 'devise-token_authenticatable'
 
+gem 'carrierwave'
+gem 'carrierwave_backgrounder'
+gem 'carrierwave-imageoptimizer'
+
+gem 'omniauth'
+gem 'omniauth-facebook'
+
+gem 'mini_magick'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
