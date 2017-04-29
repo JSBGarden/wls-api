@@ -10,26 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170429105602) do
+ActiveRecord::Schema.define(version: 20170429105929) do
 
   create_table "landslides", force: :cascade do |t|
-    t.string  "hazard_type"
-    t.integer "injuries"
-    t.string  "landslide_size"
-    t.string  "landslide_type"
-    t.decimal "latitude"
-    t.string  "location_accuracy"
-    t.string  "location_description"
-    t.decimal "longitude"
-    t.string  "near"
-    t.string  "nearest_places"
-    t.string  "trigger"
-    t.string  "source_name"
-    t.integer "fatalities"
+    t.string   "hazard_type"
+    t.integer  "injuries"
+    t.string   "landslide_size"
+    t.string   "landslide_type"
+    t.decimal  "latitude"
+    t.string   "location_accuracy"
+    t.string   "location_description"
+    t.decimal  "longitude"
+    t.string   "near"
+    t.string   "nearest_places"
+    t.string   "trigger"
+    t.string   "source_name"
+    t.integer  "fatalities"
+    t.integer  "user_id"
+    t.string   "countrsy"
+    t.datetime "occurance_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer "user_id"
-    t.string  "countrsy"
     t.index ["user_id"], name: "index_landslides_on_user_id"
   end
 
