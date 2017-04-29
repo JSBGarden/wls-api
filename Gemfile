@@ -42,6 +42,8 @@ gem 'carrierwave-imageoptimizer'
 gem 'omniauth'
 gem 'omniauth-facebook'
 
+gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.1'
+
 gem 'mini_magick'
 
 group :production do
