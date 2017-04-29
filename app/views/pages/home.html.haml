@@ -1,14 +1,21 @@
 
-%div{ :class => "alert alert-success text-center" }
-  .container
-    %strong
-      -# Landslide
-    - if user_signed_in?
-      Logged in as
-      .strong= current_user.email
 
-      = link_to "Edit Profile", edit_user_registration_path
-      = link_to "Logout", destroy_user_session_path, method: :delete
+%div{ :class => "alert alert-success text-center" }
+  .row
+    - if user_signed_in?
+      .col-md-12
+        .col-md-7
+          .pull-right
+            Logged in as
+            .strong= current_user.email
+
+        .col-md-5
+          .pull-right
+            %h5
+              = link_to "Edit Profile", edit_user_registration_path
+              &nbsp;
+              &nbsp;
+              = link_to "Logout", destroy_user_session_path, method: :delete
     - else
       .pull-right
         %h4
@@ -18,9 +25,8 @@
           = link_to "Login", new_user_session_path
     - flash.each do |name, msg|
       = content_tag :div, msg, id: "flash_#{name}"
-    = yield
 .parallax-image
-  = image_tag "landslide_1.jpg", size: "1500x550"
+  = image_tag "landslide_1.jpg", size: "1370x450"
 %div{ :class => "alert alert-success text-center" }
   .container
     .social-area.text-center
