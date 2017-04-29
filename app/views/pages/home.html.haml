@@ -1,0 +1,34 @@
+
+%div{ :class => "alert alert-success text-center" }
+  .container
+    %strong
+      -# Landslide
+    - if user_signed_in?
+      Logged in as
+      .strong= current_user.email
+
+      = link_to "Edit Profile", edit_user_registration_path
+      = link_to "Logout", destroy_user_session_path, method: :delete
+    - else
+      .pull-right
+        %h4
+          = link_to "Sign up", new_user_registration_path
+          &nbsp;
+          &nbsp;
+          = link_to "Login", new_user_session_path
+    - flash.each do |name, msg|
+      = content_tag :div, msg, id: "flash_#{name}"
+    = yield
+.parallax-image
+  = image_tag "landslide_1.jpg", size: "1500x550"
+%div{ :class => "alert alert-success text-center" }
+  .container
+    .social-area.text-center
+      %h5 Join us on
+      %a.btn.btn-social.btn-round{:href => "https://www.facebook.com/pasatrade"}
+        %i.fa.fa-facebook
+      %a.btn.btn-social.btn-round{:href => "https://www.twitter.com/pasatrade"}
+        %i.fa.fa-twitter
+      %a.btn.btn-social.btn-round{:href => "https://www.instagram.com/pasa.trade"}
+        %i.fa.fa-instagram
+
