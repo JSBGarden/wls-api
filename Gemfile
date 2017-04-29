@@ -47,6 +47,7 @@ gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.1'
 
 gem 'mini_magick'
 gem 'cocoon'
+gem 'geocoder'
 
 group :production do
   gem 'pg'

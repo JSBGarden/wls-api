@@ -1,0 +1,87 @@
+.container
+  .row
+
+    .col-md-9
+      .row
+        .col-btn.col-xs-12.text-left.bottom30
+          %h4 Landslide Data - Show
+
+      .col-sm-12
+        %table.table
+          %tbody
+            %tr
+              %th Hazard Type
+              %td= @landslide.hazard_type
+
+            %tr
+              %th Injuries
+              %td= @landslide.injuries
+
+            %tr
+              %th Landslide Size
+              %td= @landslide.landslide_size
+
+            %tr
+              %th Landslide Type
+              %td= @landslide.landslide_type
+
+            %tr
+              %th Latitude
+              %td= @landslide.latitude
+
+            %tr
+              %th Longitude
+              %td= @landslide.longitude
+
+            %tr
+              %th Location Accuracy
+              %td= @landslide.location_accuracy
+
+            %tr
+              %th Location Description
+              %td= @landslide.location_description
+
+            %tr
+              %th Near
+              %td= @landslide.near
+
+            %tr
+              %th Address
+              %td= @landslide.address
+
+            %tr
+              %th Nearest Places
+              %td
+                - for landslide in @landslide.nearbys(10)
+                  %li= link_to landslide.address, landslide
+                  %b= "#{landslide.distance.round(2)} miles"
+
+            %tr
+              %th Trigger
+              %td= @landslide.trigger
+
+            %tr
+              %th Source Name
+              %td= @landslide.source_name
+
+            %tr
+              %th Falatilities
+              %td= @landslide.fatalities
+
+            %tr
+              %th Information collected from
+              %td= @landslide.user.try(:name)
+
+            %tr
+              %th Created at
+              %td= @landslide.created_at
+
+            %tr
+              %th Map
+              %td= image_tag "https://maps.googleapis.com/maps/api/staticmap?size=400x400&sensor=false&zoom=16&markers=#{@landslide.latitude}%2C#{@landslide.longitude}"
+
+      .row
+        .text-right
+          = link_to "Delete", landslide_path(@landslide), method: :delete, data: { confirm: "Are you sure?" }, :class => "btn btn-danger delete-landslide"
+          %a.btn.btn-primary{ href: edit_landslide_path(@landslide) }
+            = t("Edit")

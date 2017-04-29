@@ -10,6 +10,10 @@
       = f.text_field :injuries, class: 'form-control'
 
     .form-group
+      = f.label "Address"
+      = f.text_field :address, class: 'form-control'
+
+    .form-group
       = f.label "Landslide size:"
       = f.select :landslide_size, ['small', 'medium', 'large'], class: 'form-control'
 
