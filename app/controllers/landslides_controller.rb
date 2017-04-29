@@ -1,7 +1,8 @@
 class LandslidesController < ApplicationController
   before_filter :authenticate_user!
+
   def new
-    @landslide = current_user.landslide.new
+    @landslide = current_user.landslides.new
   end
 
   def index
@@ -29,15 +30,20 @@ class LandslidesController < ApplicationController
 
   def edit
     @landslide = Landslide.find(params[:id])
+    check_can_modify(@landslide)
   end
 
   def update
     @landslide = Landslide.find(params[:id])
-
-    if @landslide.update_attributes(landslide_params)
-      flash[:notice] = "Landslide data has been successfully updated"
-    else
-      flash[:error] = "Something went wrong"
+    check_can_modify(@landslide)
+    respond_to do |format|
+      if @landslide.update_attributes(landslide_params)
+        format.json {
+          render "show"
+        }
+      else
+        format.json { render :json => { :errors => @landslide.errors },  :status => :unprocessable_entity }
+      end
     end
 
     redirect_to landslide_path(@landslide)
@@ -54,7 +60,14 @@ class LandslidesController < ApplicationController
 
   def landslide_params
     params.require(:landslide).permit(:id, :hazard_type, :injuries, :fatalities, :landslide_size, :landslide_type, :latitude, :location_accuracy, :location_description,
-                                :longitude, :near, :nearest_places, :trigger, :source_name, :address, :countrycode, landslide_images_attributes: [:id, :image, :_destroy])
-
+                                :longitude, :near, :nearest_places, :trigger, :source_name, :address, :countrycode, :tstamp, landslide_images_attributes: [:id, :image, :_destroy])
   end
+
+  def check_can_modify(landslide)
+    unless landslide.user == current_user
+      flash[:error] = "Something went wrong"
+      redirect_to landslides_path
+    end
+  end
+
 end
