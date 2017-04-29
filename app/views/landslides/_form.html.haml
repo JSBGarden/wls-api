@@ -43,7 +43,7 @@
 
     .form-group
       = f.label "Landslide Occured at:"
-      = f.datetime_field :tstamp
+      = f.datetime_select :tstamp
 
     .form-group
       = f.fields_for :landslide_images do |image|
