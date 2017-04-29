@@ -10,22 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170429102844) do
+ActiveRecord::Schema.define(version: 20170429105602) do
 
   create_table "landslides", force: :cascade do |t|
-    t.string  "hazard_type"
-    t.integer "injuries"
-    t.string  "landslide_size"
-    t.string  "landslide_type"
-    t.decimal "latitude"
-    t.string  "location_accuracy"
-    t.string  "location_description"
-    t.decimal "longitude"
-    t.string  "near"
-    t.string  "nearest_places"
-    t.string  "trigger"
-    t.string  "source_name"
-    t.integer "fatalities"
+    t.string   "hazard_type"
+    t.integer  "injuries"
+    t.string   "landslide_size"
+    t.string   "landslide_type"
+    t.decimal  "latitude"
+    t.string   "location_accuracy"
+    t.string   "location_description"
+    t.decimal  "longitude"
+    t.string   "near"
+    t.string   "nearest_places"
+    t.string   "trigger"
+    t.string   "source_name"
+    t.integer  "fatalities"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: :cascade do |t|
