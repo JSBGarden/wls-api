@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170429113031) do
+ActiveRecord::Schema.define(version: 20170429143753) do
+
+  create_table "landslide_images", force: :cascade do |t|
+    t.string   "image"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "landslide_id"
+    t.index ["landslide_id"], name: "index_landslide_images_on_landslide_id"
+  end
 
   create_table "landslides", force: :cascade do |t|
     t.string   "hazard_type"
@@ -26,11 +34,11 @@ ActiveRecord::Schema.define(version: 20170429113031) do
     t.string   "trigger"
     t.string   "source_name"
     t.integer  "fatalities"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "user_id"
     t.string   "country"
     t.datetime "tstamp"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.index ["user_id"], name: "index_landslides_on_user_id"
   end
 

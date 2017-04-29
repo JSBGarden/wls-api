@@ -15,6 +15,7 @@ gem 'coffee-rails', '~> 4.2'
 # gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
+gem 'jquery-ui-rails'
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
@@ -45,6 +46,7 @@ gem 'omniauth-facebook'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.1'
 
 gem 'mini_magick'
+gem 'cocoon'
 
 group :production do
   gem 'pg'
@@ -55,6 +57,7 @@ group :development, :test do
   gem 'byebug', platform: :mri
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
+  gem 'pry'
 end
 
 group :development do

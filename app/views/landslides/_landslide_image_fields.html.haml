@@ -1,0 +1,9 @@
+- if f.object.new_record?
+  .nested-fields.top20.bottom20
+    = f.file_field :image, class: 'form-control'
+    = link_to_remove_association "Remove", f, class: 'btn btn-danger btn-sm top20'
+- else
+  .nested-fields.top20.bottom20
+    - if f.object.image.url
+      = image_tag f.object.image, class: 'img-reponsive'
+      = link_to_remove_association "Remove", f, class: 'btn btn-danger btn-sm'

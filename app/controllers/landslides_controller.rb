@@ -1,4 +1,6 @@
 class LandslidesController < ApplicationController
+  before_filter :authenticate_user!
+
   def new
     @landslide = Landslide.new
   end
@@ -12,7 +14,9 @@ class LandslidesController < ApplicationController
   end
 
   def create
+    binding.pry
     @landslide = Landslide.new(landslide_params)
+    @landslide.user_id = current_user.id
     if @landslide.save
       flash[:success] = "Landslide data has been successfully added."
       redirect_to landslides_path
@@ -49,6 +53,6 @@ class LandslidesController < ApplicationController
 
   def landslide_params
     params.require(:landslide).permit(:id, :hazard_type, :injuries, :landslide_size, :landslide_type, :latitude, :location_accuracy, :location_description,
-                                :longitude, :near, :nearest_places, :trigger, :source_name)
+                                :longitude, :near, :nearest_places, :trigger, :source_name, landslide_images_attributes: [:id, :image, :_destroy])
   end
 end

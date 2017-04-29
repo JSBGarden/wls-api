@@ -1,0 +1,25 @@
+%nav.navbar.navbar-transparent.navbar-inverse-default{:role => "navigation"}
+  .container
+    / Brand and toggle get grouped for better mobile display
+    .navbar-header
+      %button#menu-toggle.navbar-toggle{:type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar.bar1
+        %span.icon-bar.bar2
+        %span.icon-bar.bar3
+      %a.navbar-brand{:href => root_path }
+        Landslide Alert
+    / Collect the nav links, forms, and other content for toggling
+    .collapse.navbar-collapse
+      %ul.nav.navbar-nav.navbar-right
+
+        %li= link_to "Landslides Data", landslides_path
+        - if current_user
+          %li= link_to current_user.email, user_session_path(current_user)
+          %li= link_to "Edit Profile", edit_user_registration_path
+          %li= link_to "Logout", destroy_user_session_path, method: :delete
+
+        - else
+          %li= link_to "Log in", new_user_session_path
+          %li= link_to "Sign up", new_user_registration_path
+          %li= link_to "Sign in using facebook", user_facebook_omniauth_authorize_path
