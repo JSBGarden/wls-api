@@ -1,0 +1,56 @@
+.container
+  .row
+    .col-md-12.col-xs-12
+      .row
+        .col-btn.col-xs-12.text-left.bottom30
+          %h4 Landslides
+
+        .col-sm-12
+          - if @landslides.count == 0
+            %p There are no landslide data added.
+          - else
+            .table-responsive
+              %table.table.top20.table-striped.table-bordered#amenities
+                %thead
+                  %tr
+                    %th Id
+                    %th Hazard Type
+                    %th Injuries
+                    %th Landslide Size
+                    %th Landslide Type
+                    %th Latitude
+                    %th Location Accuracy
+                    %th Location Description
+                    %th Longitude
+                    %th Near
+                    %th Nearest Places
+                    %th Latitude
+                    %th Source Name
+                    %th Created At
+                    %th
+
+                %tbody
+                  - (count = ((params["page"] || 1).to_i - 1) * 10)
+                  - @landslides.each_with_index do |landslide, index|
+                    %tr
+                      %td= (count + (index+1))
+                      %td= landslide.hazard_type
+                      %td= landslide.injuries
+                      %td= landslide.landslide_size
+                      %td= landslide.landslide_type
+                      %td= landslide.latitude
+                      %td= landslide.location_accuracy
+                      %td= landslide.location_description
+                      %td= landslide.longitude
+                      %td= landslide.near
+                      %td= landslide.nearest_places
+                      %td= landslide.latitude
+                      %td= landslide.source_name
+                      %td= landslide.created_at.strftime("%d/%m/%Y")
+                      %td= link_to ("<i class='fa fa-pencil'></i>").html_safe, edit_landslide_path(landslide)
+
+          .col-xs-12.text-left
+            = link_to ("<i class='fa fa-user-plus'></i>".html_safe + "Add new Landslide data"), new_landslide_path
+
+            .pagination.pull-right
+              = paginate @landslides, outer_window: 3
