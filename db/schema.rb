@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170429111337) do
+ActiveRecord::Schema.define(version: 20170429113031) do
 
   create_table "landslides", force: :cascade do |t|
     t.string   "hazard_type"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20170429111337) do
     t.string   "source_name"
     t.integer  "fatalities"
     t.integer  "user_id"
-    t.string   "countrsy"
+    t.string   "country"
     t.datetime "tstamp"
     t.datetime "created_at"
     t.datetime "updated_at"
