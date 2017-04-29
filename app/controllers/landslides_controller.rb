@@ -16,19 +16,13 @@ class LandslidesController < ApplicationController
   end
 
   def create
+
     @landslide = Landslide.new(landslide_params)
-    # @landslide.user_id = current_user.id
-
-    respond_to do |format|
-      if @landslide.save
-
-        format.json {
-          render "show"
-        }
-      else
-        puts @landslide.errors
-        format.json { render :json => { :errors => @landslide.errors },  :status => :unprocessable_entity }
-      end
+    if @landslide.save
+      flash[:success] = "Landslide data has been successfully added."
+    else
+      flash[:error] = "Something went wrong."
+      render 'new'
     end
   end
 
@@ -50,5 +44,11 @@ class LandslidesController < ApplicationController
 
   def destroy
     respond_with Landslide.destroy(params[:id])
+  end
+
+  private
+  def landslide_params
+    params.require(:landslide).permit(:id, :hazard_type, :injuries, :landslide_size, :landslide_type, :latitude, :location_accuracy, :location_description,
+                                :longitude, :near, :nearest_places, :trigger, :source_name)
   end
 end

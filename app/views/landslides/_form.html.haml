@@ -1,0 +1,31 @@
+= form_for landslide do |f|
+  .form-group.hidden
+    = f.label "Hazard Type:"
+    = f.text_field :hazard_type, class: 'form-control'
+  .form-group
+    = f.label "Number of injured:"
+    = f.text_field :injuries, class: 'form-control'
+  .form-group
+    = f.label "Landslide size:"
+    = f.select :landslide_size, ['small', 'medium', 'large'], class: 'form-control'
+  .form-group.hidden
+    = f.label "latitude:"
+    = f.text_field :latitude, class: 'form-control'
+  .form-group.hidden
+    = f.label "longitude:"
+    = f.text_field :longitude, class: 'form-control'
+  .form-group
+    = f.label "Location Accuracy"
+    = f.select :location_accuracy, ['Hightly accurate', 'Not so accurate'], class: 'form-control'
+
+  .form-group
+    = f.label "Description of location:"
+    = f.text_area :location_description, class: 'form-control'
+  .form-group
+    = f.label "Near known location of landslide area:"
+    = f.text_field :near, class: 'form-control'
+  .form-group
+    = f.label "Trigger:"
+    = f.text_field :trigger, class: 'form-control'
+  .form-group
+    = f.submit "Submit", class: 'btn btn-primary'
