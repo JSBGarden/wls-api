@@ -10,7 +10,7 @@
       = f.text_field :injuries, class: 'form-control'
     .form-group
       = f.label "Country:"
-      = f.select :country, CS.countries.map{|h|[h[1], h[0]]}, class: 'form-control'
+      = f.select :countrycode, CS.countries.map{|h|[h[1], h[0]]}, class: 'form-control'
 
     .form-group
       = f.label "Address"
@@ -57,3 +57,4 @@
 
     .form-group
       = f.submit "Submit", class: 'btn btn-primary'
+
