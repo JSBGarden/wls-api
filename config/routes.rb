@@ -3,6 +3,8 @@ require "api_constraints"
     # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
     root 'pages#home'
 
+    resources :landslides
+
     namespace :api, defaults: { format: 'json' } do
       # namespace :v1 do
       #   get "dashing" => "pages#dashing"
