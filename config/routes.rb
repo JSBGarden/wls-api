@@ -3,7 +3,7 @@ require "api_constraints"
     # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
     root 'pages#home'
     authenticate :user do
-      resources :landslides, only: [:new, :create, :edit, :update]
+      resources :landslides
     end
 
     namespace :api, defaults: { format: 'json' } do
