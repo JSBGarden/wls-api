@@ -11,21 +11,38 @@
     .form-group
       = f.label "Number of injured:"
       = f.text_field :injuries, class: 'form-control'
+      %small.form-text.text-muted
+        Count of injured people in the landslide
     .form-group
       = f.label "Number of fatalities:"
       = f.text_field :fatalities, class: 'form-control'
+      %small.form-text.text-muted
+        Count of the people who died in the landslide
 
     .form-group
       = f.label "Country:"
       = f.select :countrycode, CS.countries.map{|h|[h[1], h[0]]}, class: 'form-control'
+      %br
+      %small.form-text.text-muted
+        Name of the Country, where the landslide occured
 
     .form-group
       = f.label "Address"
       = f.text_field :address, class: 'form-control'
+      %small.form-text.text-muted
+        Address where the landslide occured
 
     .form-group
       = f.label "Landslide size:"
       = f.select :landslide_size, ['small', 'medium', 'large'], class: 'form-control'
+      %br
+      %small.form-text.text-muted
+        small if area < 500 sq. m.
+        %br
+        medium if area between 500 sq. m. to 2 sq. km.
+        %br
+        large if area > 2 sq. km.
+
 
     .form-group.hidden
       = f.label "latitude:"
@@ -38,22 +55,36 @@
     .form-group
       = f.label "Location Accuracy"
       = f.select :location_accuracy, ['Known within 1km', 'Known within 2km', 'Known greater than 2km'], class: 'form-control'
+      %small.form-text.text-muted
+        How Accurate is the address
+
 
     .form-group
       = f.label "Description of location:"
       = f.text_area :location_description, class: 'form-control'
+      %small.form-text.text-muted
+        Describe the location where the landslide occured
 
     .form-group
       = f.label "Near known location of landslide area:"
       = f.text_field :near, class: 'form-control'
+      %br
+      %small.form-text.text-muted
+        A known location near the landslide area
+
 
     .form-group
       = f.label "Trigger:"
       = f.text_field :trigger, class: 'form-control'
+      %small.form-text.text-muted
+        What caused the landslide
 
     .form-group
       = f.label "Landslide Occured at:"
       = f.datetime_select :tstamp
+      %small.form-text.text-muted
+        When did the landslide occured
+
 
     .form-group
       = f.fields_for :landslide_images do |image|
