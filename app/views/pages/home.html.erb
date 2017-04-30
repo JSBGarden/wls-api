@@ -16,10 +16,16 @@
         }
       },
       series: [{
-        name: "Time",
+        name: "Fatality",
         pointInterval: <%= 1.day * 1000 %>,
         pointStart: <%= 3.weeks.ago.to_i * 1000 %>,
-        data: <%= Landslide.all.map(&:fatalities).compact %>
+        data: <%= Landslide.pluck(:fatalities).compact %>
+      }, {
+        name: "Injury",
+        pointInterval: <%= 1.day * 1000 %>,
+        pointStart: <%= 3.weeks.ago.to_i * 1000 %>,
+        data: <%= Landslide.pluck(:injuries).compact %>
+
       }]
     });
   });
@@ -75,9 +81,96 @@
       }]
     });
   });
+
+  $(function() {
+    new Highcharts.Chart({
+      chart: {
+        type: 'pie',
+        renderTo: 'size_chart'
+      },
+      title: {
+        text: 'Browser market shares January, 2015 to May, 2015'
+      },
+      tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+      },
+      plotOptions: {
+        pie: {
+          allowPointSelect: true,
+          cursor: 'pointer',
+          dataLabels: {
+              enabled: false
+          },
+          showInLegend: true
+        }
+      },
+      series: [{
+        name: 'Brands',
+        colorByPoint: true,
+        data: [{
+            name: 'Large',
+            y: <%= Landslide.where(landslide_type: "Large").count %>
+        }, {
+            name: 'Medium',
+            y: <%= Landslide.where(landslide_type: "Medium").count %>,
+            sliced: true,
+            selected: true
+        }, {
+            name: 'Very Large',
+            y: <%= Landslide.where(landslide_type: "very_large").count %>
+        }, {
+            name: 'Small',
+            y: <%= Landslide.where(landslide_type: "Small").count %>
+        }]
+      }]
+    });
+  });
 </script>
 
+<div class="container">
+  <div class='col-md-12'>
+    <marquee>
+      <div class='col-md-6'>
+        <h3 style='color:red;'>Latest Landslide</h3>
+        <%= Landslide.last.address %>
+        <%= Landslide.last.countryname %>
 
-<div id='death_chart' style='width:560px; height: 300px;'></div>
+        <br>
+        <%= Landslide.last.nearest_places %>
+        <%= Landslide.last.created_at %>
 
-<div id='country_chart' style='width:560px; height: 300px;'></div>
+        <br>
+        <%= link_to "Follow this link to see more info", landslide_path(Landslide.last) %>
+      </div>
+
+      <div class='col-md-6'>
+        <h3>Top 3 Landslide recorded</h3>
+        <% Landslide.all.order("injuries DESC").limit(3).each do |landslide| %>
+          <%= landslide.address %>
+          <%= landslide.countryname %>
+
+          <br>
+          <%= landslide.nearest_places %>
+          <%= landslide.created_at %>
+
+          <br>
+          <%= link_to "Follow this link to see more info", landslide_path(landslide) %>
+        <% end %>
+      </div>
+    </marquee>
+  </div>
+</div>
+
+<div class='col-md-12'>
+  <div class='col-md-6'>
+    <div id='death_chart' style='width:560px; height: 300px;'></div>
+  </div>
+
+  <div class="col-md-6">
+    <div id='country_chart' style='width:560px; height: 300px;'></div>
+  </div>
+</div>
+
+<div class="col-md-12">
+  <div id='size_chart' style='width:560px; height:300px'></div>
+</div>

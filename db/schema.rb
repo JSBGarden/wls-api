@@ -34,13 +34,13 @@ ActiveRecord::Schema.define(version: 20170429170949) do
     t.string   "trigger"
     t.string   "source_name"
     t.integer  "fatalities"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "user_id"
     t.string   "countryname"
     t.datetime "tstamp"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "countrycode"
     t.string   "address"
+    t.string   "countrycode"
     t.index ["user_id"], name: "index_landslides_on_user_id"
   end
 
