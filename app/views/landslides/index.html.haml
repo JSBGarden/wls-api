@@ -29,6 +29,7 @@
                   %th Nearest Places
                   %th Latitude
                   %th Source Name
+                  %th Address
                   %th Created At
                   %th
                   %th
@@ -48,6 +49,7 @@
                     %td= landslide.nearest_places
                     %td= landslide.latitude
                     %td= landslide.source_name
+                    %td= landslide.address
                     %td= landslide.created_at.strftime("%d/%m/%Y")
                     %td= link_to ("<i class='fa fa-pencil'></i>").html_safe, edit_landslide_path(landslide)
                     %td= link_to ("<i class='fa fa-eye'></i>").html_safe, landslide_path(landslide)
