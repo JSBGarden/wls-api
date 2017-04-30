@@ -3,7 +3,10 @@
 
     .form-group.hidden
       = f.label "Hazard Type:"
-      = f.text_field :hazard_type, class: 'form-control'
+      = f.text_field :hazard_type, class: 'form-control', value: 'landslide'
+    .form-group.hidden
+      = f.label "Hazard Type:"
+      = f.text_field :landslide_type, class: 'form-control', value: 'landslide'
 
     .form-group
       = f.label "Number of injured:"
