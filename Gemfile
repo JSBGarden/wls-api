@@ -46,8 +46,8 @@ gem 'omniauth-facebook'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.1'
 
 gem 'mini_magick'
-gem 'cocoon'
 gem 'geocoder'
+gem 'twilio-ruby'
 
 group :production do
   gem 'pg'
@@ -73,3 +73,5 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'city-state'
+gem 'countries'
+gem 'cocoon'

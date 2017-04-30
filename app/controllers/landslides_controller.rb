@@ -20,6 +20,14 @@ class LandslidesController < ApplicationController
   def create
     @landslide = current_user.landslides.new(landslide_params)
     if @landslide.save
+      client = Twilio::REST::Client.new(TWILIO_CONFIG['sid'], TWILIO_CONFIG['token'])
+
+      # Create and send an SMS message
+      client.account.sms.messages.create(
+        from: TWILIO_CONFIG['from'],
+        to: '+9779840061046',
+        body: "A #{@landslide.landslide_size} landslide has occurred near #{@landslide.address}."
+      )
       flash[:success] = "Landslide data has been successfully added."
       redirect_to landslides_path
     else
