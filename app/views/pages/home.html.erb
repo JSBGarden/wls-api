@@ -109,18 +109,18 @@
         colorByPoint: true,
         data: [{
             name: 'Large',
-            y: <%= Landslide.where(landslide_type: "Large").count %>
+            y: <%= Landslide.where(landslide_size: "Large").count %>
         }, {
             name: 'Medium',
-            y: <%= Landslide.where(landslide_type: "Medium").count %>,
+            y: <%= Landslide.where(landslide_size: "Medium").count %>,
             sliced: true,
             selected: true
         }, {
             name: 'Very Large',
-            y: <%= Landslide.where(landslide_type: "Very_large").count %>
+            y: <%= Landslide.where(landslide_size: "Very_large").count %>
         }, {
             name: 'Small',
-            y: <%= Landslide.where(landslide_type: "Small").count %>
+            y: <%= Landslide.where(landslide_size: "Small").count %>
         }]
       }]
     });
