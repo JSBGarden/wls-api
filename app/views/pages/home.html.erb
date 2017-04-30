@@ -1,0 +1,83 @@
+<script type='text/javascript' charset='utf-8'>
+  $(function () {
+    new Highcharts.Chart({
+      chart: {
+        renderTo: "death_chart"
+      },
+      title: {
+        text: "Death Count"
+      },
+      xAxis: {
+        type: "datetime"
+      },
+      yAxis: {
+        title: {
+          text: "Death"
+        }
+      },
+      series: [{
+        name: "Time",
+        pointInterval: <%= 1.day * 1000 %>,
+        pointStart: <%= 3.weeks.ago.to_i * 1000 %>,
+        data: <%= Landslide.all.map(&:fatalities).compact %>
+      }]
+    });
+  });
+
+  $(function() {
+
+    new Highcharts.Chart({
+      chart: {
+          type: 'bar',
+          renderTo: 'country_chart'
+      },
+      title: {
+          text: 'Landslide in different country'
+      },
+      xAxis: {
+          categories: ['Africa', 'America', 'Asia', 'Europe', 'Oceania'],
+          title: {
+              text: null
+          }
+      },
+      yAxis: {
+          min: 0,
+          title: {
+              text: 'Population (millions)',
+              align: 'high'
+          },
+          labels: {
+              overflow: 'justify'
+          }
+      },
+      tooltip: {
+          valueSuffix: ' millions'
+      },
+      plotOptions: {
+          bar: {
+              dataLabels: {
+                  enabled: true
+              }
+          }
+      },
+      credits: {
+          enabled: false
+      },
+      series: [{
+          name: 'Year 1800',
+          data: [107, 31, 635, 203, 2]
+      }, {
+          name: 'Year 1900',
+          data: [133, 156, 947, 408, 6]
+      }, {
+          name: 'Year 2012',
+          data: [1052, 954, 4250, 740, 38]
+      }]
+    });
+  });
+</script>
+
+
+<div id='death_chart' style='width:560px; height: 300px;'></div>
+
+<div id='country_chart' style='width:560px; height: 300px;'></div>
