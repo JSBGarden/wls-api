@@ -2,8 +2,9 @@ require "api_constraints"
   Rails.application.routes.draw do
     # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
     root 'pages#home'
-
-    resources :landslides
+    authenticate :user do
+      resources :landslides
+    end
 
     namespace :api, defaults: { format: 'json' } do
       # namespace :v1 do

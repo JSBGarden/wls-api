@@ -3,11 +3,21 @@
 
     .form-group.hidden
       = f.label "Hazard Type:"
-      = f.text_field :hazard_type, class: 'form-control'
+      = f.text_field :hazard_type, class: 'form-control', value: 'landslide'
+    .form-group.hidden
+      = f.label "Hazard Type:"
+      = f.text_field :landslide_type, class: 'form-control', value: 'landslide'
 
     .form-group
       = f.label "Number of injured:"
       = f.text_field :injuries, class: 'form-control'
+    .form-group
+      = f.label "Number of fatalities:"
+      = f.text_field :fatalities, class: 'form-control'
+
+    .form-group
+      = f.label "Country:"
+      = f.select :countrycode, CS.countries.map{|h|[h[1], h[0]]}, class: 'form-control'
 
     .form-group
       = f.label "Address"
@@ -43,7 +53,7 @@
 
     .form-group
       = f.label "Landslide Occured at:"
-      = f.datetime_field :tstamp
+      = f.datetime_select :tstamp
 
     .form-group
       = f.fields_for :landslide_images do |image|

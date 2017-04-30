@@ -1,4 +1,5 @@
 class Landslide < ActiveRecord::Base
+  before_save :set_country
   belongs_to :user
 
   has_many :landslide_images
@@ -8,4 +9,8 @@ class Landslide < ActiveRecord::Base
   geocoded_by :address
   after_validation :geocode, :if => :address_changed?
 
+  protected
+  def set_country
+    self.countryname = CS.countries[self.countrycode.to_sym]
+  end
 end

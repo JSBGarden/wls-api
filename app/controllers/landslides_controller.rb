@@ -1,6 +1,10 @@
 class LandslidesController < ApplicationController
   before_filter :authenticate_user!
 
+  def new
+    @landslide = current_user.landslides.new
+  end
+
   def index
     if params[:search].present?
       @landslides = Landslide.near(params[:search], 50).page(params[:page]).per(10)
@@ -9,17 +13,12 @@ class LandslidesController < ApplicationController
     end
   end
 
-  def new
-    @landslide = Landslide.new
-  end
-
   def show
     @landslide = Landslide.find(params[:id])
   end
 
   def create
-    @landslide = Landslide.new(landslide_params)
-    @landslide.user_id = current_user.id
+    @landslide = current_user.landslides.new(landslide_params)
     if @landslide.save
       flash[:success] = "Landslide data has been successfully added."
       redirect_to landslides_path
@@ -31,15 +30,20 @@ class LandslidesController < ApplicationController
 
   def edit
     @landslide = Landslide.find(params[:id])
+    check_can_modify(@landslide)
   end
 
   def update
     @landslide = Landslide.find(params[:id])
-
-    if @landslide.update_attributes(landslide_params)
-      flash[:notice] = "Landslide data has been successfully updated"
-    else
-      flash[:error] = "Something went wrong"
+    check_can_modify(@landslide)
+    respond_to do |format|
+      if @landslide.update_attributes(landslide_params)
+        format.json {
+          render "show"
+        }
+      else
+        format.json { render :json => { :errors => @landslide.errors },  :status => :unprocessable_entity }
+      end
     end
 
     redirect_to landslide_path(@landslide)
@@ -55,7 +59,15 @@ class LandslidesController < ApplicationController
   private
 
   def landslide_params
-    params.require(:landslide).permit(:id, :hazard_type, :injuries, :landslide_size, :landslide_type, :latitude, :location_accuracy, :location_description,
-                                :longitude, :near, :nearest_places, :trigger, :source_name, :address, landslide_images_attributes: [:id, :image, :_destroy])
+    params.require(:landslide).permit(:id, :hazard_type, :injuries, :fatalities, :landslide_size, :landslide_type, :latitude, :location_accuracy, :location_description,
+                                :longitude, :near, :nearest_places, :trigger, :source_name, :address, :countrycode, :tstamp, landslide_images_attributes: [:id, :image, :_destroy])
   end
+
+  def check_can_modify(landslide)
+    unless landslide.user == current_user
+      flash[:error] = "Something went wrong"
+      redirect_to landslides_path
+    end
+  end
+
 end
