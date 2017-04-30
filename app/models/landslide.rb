@@ -12,5 +12,6 @@ class Landslide < ActiveRecord::Base
   protected
   def set_country
     self.countryname = CS.countries[self.countrycode.to_sym]
+  rescue
   end
 end
