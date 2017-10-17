@@ -21,7 +21,8 @@ namespace :load_data do
         longitude: landslide["longitude"],
         near: landslide["near"],
         trigger: landslide["trigger"],
-        tstamp: landslide["tstamp"])
+        tstamp: landslide["tstamp"],
+        external_id: landslide["id"])
       new_data.save
     end
   end
