@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170429170949) do
+ActiveRecord::Schema.define(version: 20171017161948) do
 
   create_table "landslide_images", force: :cascade do |t|
     t.string   "image"
@@ -34,13 +34,15 @@ ActiveRecord::Schema.define(version: 20170429170949) do
     t.string   "trigger"
     t.string   "source_name"
     t.integer  "fatalities"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.integer  "user_id"
     t.string   "countryname"
     t.datetime "tstamp"
-    t.string   "address"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "countrycode"
+    t.string   "address"
+    t.string   "external_id"
+    t.index ["external_id"], name: "index_landslides_on_external_id", unique: true
     t.index ["user_id"], name: "index_landslides_on_user_id"
   end
 
