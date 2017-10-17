@@ -22,7 +22,7 @@ namespace :load_data do
         near: landslide["near"],
         trigger: landslide["trigger"],
         tstamp: landslide["tstamp"],
-        external_id: landslide["id"])
+        external_id: "nasa-#{landslide['id']}")
       new_data.save
     end
   end
