@@ -36,13 +36,15 @@ ActiveRecord::Schema.define(version: 20171017161948) do
     t.integer  "fatalities"
     t.integer  "user_id"
     t.string   "countryname"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.datetime "tstamp"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "countrycode"
-    t.string   "address"
     t.string   "external_id"
     t.index ["external_id"], name: "index_landslides_on_external_id", unique: true
+    t.string   "address"
     t.index ["user_id"], name: "index_landslides_on_user_id"
   end
 
