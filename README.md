@@ -1,24 +1,21 @@
-# README
+# README landslide
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
+* Ruby version:
+  * ruby 2.2.6
+  * rails 5.0.1
 
 * System dependencies
 
 * Configuration
 
-* Database creation
+* Database migration
+  * migration `bundle exec rake db:migrate`
 
-* Database initialization
 
-* How to run the test suite
+* How to run server locally
+  - run `bundle exec rails s -p 3000`
+  - [localhost:3000](localhost:3000)
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
 
-* ...
+
